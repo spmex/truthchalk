@@ -58,7 +58,7 @@
       signup () {
         if (this.isInfoValid()) {
           chrome.runtime.getBackgroundPage(async (bg) => {
-            let message = await bg.background.default.logIn(
+            let message = await bg.background.default.signUp(
               this.username, this.email, this.passwd
             )
             if (message.success) {
