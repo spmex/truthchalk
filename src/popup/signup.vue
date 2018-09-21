@@ -34,7 +34,6 @@
           id="signup" @click="signup" type="submit" size="small" round
         ) Signup
   div(v-else)
-      
     h2 #[i(id="tick" class="el-icon-circle-check-outline")]
       br
       |
