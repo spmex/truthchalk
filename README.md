@@ -20,7 +20,7 @@ cd truthchalk
 # Install dependencies
 npm install
 
-#  Build the extension directory with hot reloading
+# Build the extension directory with hot reloading
 npm run dev
 ```
 
