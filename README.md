@@ -6,7 +6,7 @@ Features:
 * A dashboard in the popup page to check the annotations you have made. (ToDo)
 
 ## Usage
-![Demo Animation](../assets/demo.gif?raw=true | width=256)
+![Demo Animation](../assets/demo.gif?raw=true){:width="256px"}
 
 * Press `Ctrl` and start selecting the sentence.
 * Select true or false on the popup bar.
