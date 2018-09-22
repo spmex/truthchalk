@@ -1,5 +1,5 @@
 # TruthChalk
-A Chrome extension to annotate the statements as True/False in any website, refactored from [truth-annotator](https://github.com/archlyx/truth-annotator) using Vue.js.
+A Chrome extension to annotate statements as True/False in any website, refactored from [truth-annotator](https://github.com/archlyx/truth-annotator) using Vue.js.
 Features:
 * Automatically select the current sentence when clicking on any text.
 * Highlight annotations made by other users in the current page.
