@@ -6,6 +6,8 @@ Features:
 * A dashboard in the popup page to check the annotations you have made. (ToDo)
 
 ## Usage
+![Demo Animation](../assets/demo.gif?raw=true)
+
 * Press `Ctrl` and start selecting the sentence.
 * Select true or false on the popup bar.
 * Click any other area to save your annotation.
