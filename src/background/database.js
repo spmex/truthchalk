@@ -69,30 +69,31 @@ export default {
     return query.find()
   },
 
-  updateUserAnnotation (userAnnotation, vote) {
+  updateUserAnnotation (userAnnotation, vote, source) {
     userAnnotation.set('vote', vote)
+    userAnnotation.set('source', source)
     return userAnnotation.save()
   },
 
-  createUserAnnotation (user, annotation, vote) {
+  createUserAnnotation (user, annotation, vote, source) {
     const UserAnnotation = Parse.Object.extend(USER_ANNOTATION_TABLE)
     let userAnnotation = new UserAnnotation()
     userAnnotation.set('user', user)
     userAnnotation.set('annotation', annotation)
     userAnnotation.set('vote', 0)
-    return this.updateUserAnnotation(userAnnotation, vote)
+    return this.updateUserAnnotation(userAnnotation, vote, source)
   },
 
-  async saveUserAnnotation (user, annotation, vote) {
+  async saveUserAnnotation (user, annotation, vote, source) {
     let userAnnotation = await this.queryUserAnnotation(user, annotation)
     if (userAnnotation) {
       if (vote === 0) {
         return userAnnotation.destroy()
       } else {
-        return this.updateUserAnnotation(userAnnotation, vote)
+        return this.updateUserAnnotation(userAnnotation, vote, source)
       }
     } else {
-      return this.createUserAnnotation(user, annotation, vote)
+      return this.createUserAnnotation(user, annotation, vote, source)
     }
   }
 }

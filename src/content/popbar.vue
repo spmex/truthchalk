@@ -167,6 +167,7 @@
             text: '',
             id: null,
             vote: this.state,
+            source: this.getUrl(),
             increment: this.solveIncrement(this.originalState, this.state)
           }
           // Determine the target element to process
@@ -188,6 +189,7 @@
             this.updateTargetData(target)
           }
           annotation.text = target.innerText
+          // Send the annotation to background.js to save it
           chrome.runtime.sendMessage(annotation, (response) => {
             if (target) {
               target.dataset['tcId'] = response.id
@@ -200,8 +202,18 @@
       },
 
       /*
+        Get the URL of the current web page
+       */
+      getUrl () {
+        return window.location.protocol +
+          '//' + window.location.host +
+          '/' + window.location.pathname +
+          window.location.search
+      },
+
+      /*
        A table to quickly determine the increments of numTrue/numFalse
-        */
+       */
       solveIncrement (state, newState) {
         const increments = {
           '0,-1': [0, 1],
@@ -219,7 +231,7 @@
         * Increments table
         * * key: (the original state, the button input)
         * * value: the increments of numTrue/numFalse based on state
-        */
+       */
       toggleState (v) {
         let oldState = this.state
         this.state = (v === this.state) ? 0 : v
@@ -232,7 +244,7 @@
         Expand the selection to a full sentence.
         * The text of the PARENT node is retrived, and match sentences
         * Matching regex from: https://stackoverflow.com/questions/26184434/splitting-a-string-into-words-and-keeping-delimiter
-        */
+       */
       expandSelection (selection) {
         let textNode = selection.anchorNode
         let parent = textNode.parentNode
@@ -260,7 +272,7 @@
         Apply highlight to a selection or target element
         * For selection, we create a target element to contain it
         * The input boolean indicate whether we apply true/false color
-        */
+       */
       applyHighlight (target, isTrue) {
         let classes = ['tc-highlight-true', 'tc-highlight-false']
         let n = isTrue ? 0 : 1
@@ -278,7 +290,7 @@
         * Create a new range to contain the children of the target
         * Insert the child before the target one by one
         * Remove the target in the end and merge the range boundary
-        */
+       */
       removeHighlight (target) {
         let range = rangy.createRange()
         let parent = target.parentNode

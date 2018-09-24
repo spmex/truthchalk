@@ -18,7 +18,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
       db.saveAnnotation(
         request.text, request.id, request.increment, Parse.User.current()
       ).then((annotation) => db.saveUserAnnotation(
-        Parse.User.current(), annotation, request.vote
+        Parse.User.current(), annotation, request.vote, request.source
       )).then((userAnnotation) => {
         sendResponse({ id: userAnnotation.get('annotation').id })
       }).catch((error) => console.log(error))
