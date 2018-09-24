@@ -1,20 +1,20 @@
 <template lang="pug">
-    div#tc-popbar(
-      v-if = 'hasUser'
-      v-show='isShow'
-      v-bind:style='position'
-      ref='popbar'
-    )
-      el-button#tc-button-true.tc-popbar.tc-button(
-        type='primary'
-        @click.left.stop='toggleState(1)'
-        v-bind:class="{ 'tc-button-toggle': buttonTrue }"
-      ) T | {{ numTrue }}
-      el-button#tc-button-false.tc-popbar.tc-button(
-        type='primary'
-        @click.left.stop='toggleState(-1)'
-        v-bind:class="{ 'tc-button-toggle': buttonFalse }"
-      ) {{ numFalse }} | F
+  div#tc-popbar(
+    v-if = 'hasUser'
+    v-show='isShow'
+    v-bind:style='position'
+    ref='popbar'
+  )
+    el-button#tc-button-true.tc-popbar.tc-button(
+      type='primary'
+      @click.left.stop='toggleState(1)'
+      v-bind:class="{ 'tc-button-toggle': buttonTrue }"
+    ) T | {{ numTrue }}
+    el-button#tc-button-false.tc-popbar.tc-button(
+      type='primary'
+      @click.left.stop='toggleState(-1)'
+      v-bind:class="{ 'tc-button-toggle': buttonFalse }"
+    ) {{ numFalse }} | F
 </template>
 <script>
   import rangy from 'rangy/lib/rangy-core.js'

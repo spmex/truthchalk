@@ -5,25 +5,32 @@
       b  LogOut
     el-button#refresh(
       type="primary" icon="el-icon-refresh"
-      @click="fetchAllAnnotations()" circle
+      @click="fetchAllAnnotations" circle
     )
     el-card.card(
       v-for="annotation in annotations", :key="annotation.id",
-      v-bind:style="{ background: getBgColor(annotation)}"
+      :style="{ background: getBgColor(annotation) }"
+      :body-style="{ padding: '15px' }"
       shadow="hover",      
     )
       blockquote.cardText {{ annotation.text }}
+      true-false-buttons(
+        v-bind="{ annotation: annotation }"
+      )
       el-button.toLink(
         type="primary" icon="el-icon-arrow-right"
         @click="openSourceLink(annotation.source)" circle
       )
 </template>
 <script>
+  import TrueFalseButtons from './trueFalseButtons.vue'
+
   export default {
     data: () => ({
       annotations: []
     }),
     computed: { },
+    components: { TrueFalseButtons },
     created () {
       document.body.style.width = '350px'
       document.getElementsByTagName('html')[0].style.width = '350px'
@@ -99,7 +106,7 @@
   position: absolute;
   width: 25px;
   height: 25px;
-  bottom: 5px;
+  bottom: 10px;
   right: 5px;
   padding: 0;
   border-width: 0;
@@ -113,10 +120,11 @@ blockquote {
   font-family: "Trebuchet MS", Helvetica, sans-serif;
   font-size: 14px;
   font-style: italic;
-  margin: 0.25em 0;
+  margin: 1em 0;
   padding-top: 0.2em;
   padding-bottom: 0.8em;
   padding-left: 40px;
+  padding-right: 20px;
   line-height: 1.45;
   position: relative;
   color: #383838;
