@@ -27,6 +27,10 @@ export default {
   border-color: black;
   box-shadow: 0 0 0 black
 }
+.el-tooltip__popper {
+  padding: 5px;
+  font-size: 8pt !important;
+}
 .tc-error{
   color: red;
   margin-bottom: 0

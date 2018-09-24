@@ -3,10 +3,11 @@
     div#dashboard-logout(@click="logOut")
       i.el-icon-arrow-left
       b  LogOut
-    el-button#refresh(
-      type="primary" icon="el-icon-refresh"
-      @click="fetchAllAnnotations" circle
-    )
+    el-tooltip(content="Refresh" placement="bottom")
+      el-button#refresh(
+        type="primary" icon="el-icon-refresh"
+        @click="fetchAllAnnotations" circle
+      )
     el-card.card(
       v-for="annotation in annotations", :key="annotation.id",
       :style="{ background: getBgColor(annotation) }"
@@ -17,10 +18,11 @@
       true-false-buttons(
         v-bind="{ annotation: annotation }"
       )
-      el-button.toLink(
-        type="primary" icon="el-icon-arrow-right"
-        @click="openSourceLink(annotation.source)" circle
-      )
+      el-tooltip(content="Source" placement="bottom")
+        el-button.toLink(
+          type="primary" icon="el-icon-arrow-right"
+          @click="openSourceLink(annotation.source)" circle
+        )
 </template>
 <script>
   import TrueFalseButtons from './trueFalseButtons.vue'

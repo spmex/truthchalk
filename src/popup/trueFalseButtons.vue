@@ -1,13 +1,15 @@
 <template lang="pug">
-  div
-    el-button#button-save.op-buttons(
-      icon='el-icon-delete' v-if='toSave'
-      type="primary" @click='reset' circle
-    )
-    el-button#button-save.op-buttons(
-      icon='el-icon-check' v-if='toSave'
-      type="success" @click='save' circle
-    )
+  div#card-buttons
+    el-tooltip(content="Revert" placement="bottom")
+      el-button#button-save.op-buttons(
+        icon='el-icon-delete' v-show='toSave'
+        type="primary" @click='reset' circle
+      )
+    el-tooltip(content="Save" placement="bottom")
+      el-button#button-save.op-buttons(
+        icon='el-icon-check' v-show='toSave'
+        type="success" @click='save' circle
+      )
     el-button#button-true.tc-buttons(
       type='primary' round
       @click.left='toggleState(1)'
@@ -95,7 +97,7 @@ export default {
 <style lang="scss" scoped>
 $tc-true-tint: orange;
 $tc-false-tint: black;
-div{
+#card-buttons{
   position: absolute;
   margin-top: 10px;
   bottom: 10px;
@@ -136,6 +138,6 @@ div{
   height: 25px;
   padding: 0;
   color: black;
-  border: none
+  border: none;
 }
 </style>
