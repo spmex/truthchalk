@@ -48,6 +48,27 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
         }
       })
       break
+
+    // Query all the annotations made by current User
+    case 'queryAllAnnotationsByUser':
+      db.queryAllAnnotationsByUser(
+        Parse.User.current()
+      ).then(async (userAnnotations) => {
+        let annotations = []
+        for (let uA of userAnnotations) {
+          let annotation = await uA.get('annotation').fetch()
+          annotations.push({
+            id: annotation.id,
+            text: annotation.get('text'),
+            numTrue: annotation.get('numTrue'),
+            numFalse: annotation.get('numFalse'),
+            source: uA.get('source'),
+            vote: uA.get('vote'),
+            createdTime: uA.get('createdAt').toLocaleString()
+          })
+        }
+        sendResponse({ annotations: annotations })
+      })
   }
   return true
 })

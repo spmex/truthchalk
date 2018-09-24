@@ -6,9 +6,20 @@
     router-link(to="/Signup")
       el-button(id="signup" class="button" size="small" round) Signup
 </template>
+<script>
+export default {
+  created () {
+    document.body.style.width = '200px'
+    document.body.style.height = '200px'
+    document.getElementsByTagName('html')[0].style.width = '216px'
+    document.getElementsByTagName('html')[0].style.height = '216px'
+  }
+}
+</script>
 <style scoped>
 #login{
   position: absolute;
+  width: 35%;
   left: 12%; 
   bottom: 5%;
   background: orange;
@@ -16,6 +27,7 @@
 }
 #signup{
   position: absolute;
+  width: 35%;
   right: 12%; 
   bottom: 5%;
   background: black;

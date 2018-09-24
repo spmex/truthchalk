@@ -57,6 +57,7 @@ h2 {
 }
 #login{
   position: absolute;
+  width: 35%;
   margin-top: 5%;
   margin-bottom: 5%;
   left: 32.5%;

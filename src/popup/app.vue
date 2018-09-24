@@ -8,15 +8,10 @@ export default {
 }
 </script>
 <style>
-body{
-  height: 200px;
-  width: 200px
-}
 *{
   font-family: 'Bookman Old Style', serif
 }
 .el-button{
-  width: 35%;
   height: 30px;
   opacity: 0.7;
   border-color: black;

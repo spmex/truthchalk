@@ -5,10 +5,12 @@ let USER_ANNOTATION_TABLE = 'UserAnnotations'
 
 export default {
   /*
-    Save a new annotation. The input entry:
+    Query an annotation with text and ID. The input:
     * text: Sentence text
-    * vote: Vote value (1 or -1)
-    */
+    * ID: the objectId in database for this annotation
+    If ID is not undefined in the input, we direclty use it to query.
+    Otherwise we try to find the annotation with matched text
+   */
   queryAnnotation (text, id) {
     const Annotation = Parse.Object.extend(ANNOTATIONS_TABLE)
     const query = new Parse.Query(Annotation)
@@ -20,12 +22,26 @@ export default {
     return query.first()
   },
 
+  /*
+    Update the number of true/false of an annotation. Input:
+    * annotation: the annotation object (from the query or Parse API)
+    * increment: an array with the increments of the number of true/false.
+    * * Index 0: number of true
+    * * Index 1: number of false
+   */
   updateAnnotation (annotation, increment) {
     annotation.increment('numTrue', increment[0])
     annotation.increment('numFalse', increment[1])
     return annotation.save()
   },
 
+  /*
+    Create an annotation object. Input:
+    * text: the text of the sentence to be saved
+    * increment: an array with the increments of the number of true/false.
+    * * Index 0: number of true
+    * * Index 1: number of false
+   */
   createAnnotation (text, increment) {
     const Annotation = Parse.Object.extend(ANNOTATIONS_TABLE)
     let annotation = new Annotation()
@@ -95,5 +111,16 @@ export default {
     } else {
       return this.createUserAnnotation(user, annotation, vote, source)
     }
+  },
+
+  /*
+    Query all the annotations made by User. Input
+    * User: the user object (from database of Parse.User.current())
+   */
+  queryAllAnnotationsByUser (user) {
+    const UserAnnotation = Parse.Object.extend(USER_ANNOTATION_TABLE)
+    const query = new Parse.Query(UserAnnotation)
+    query.equalTo('user', user)
+    return query.find()
   }
 }

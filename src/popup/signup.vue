@@ -110,6 +110,7 @@ h2 {
 }
 .el-form-item.button{
   margin-top: 10%;
+  width: 35%;
 }
 #signup, #redirect{
   position: absolute;
